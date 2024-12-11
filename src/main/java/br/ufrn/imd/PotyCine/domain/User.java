@@ -2,20 +2,28 @@ package br.ufrn.imd.PotyCine.domain;
 
 import br.ufrn.imd.PotyCine.enums.Role;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name="users")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @Column(unique = true)
     private String email;
     private String password;
-    private Role role;
 
-    public User() {
-    }
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public User(Long id) {
         this.id = id;
