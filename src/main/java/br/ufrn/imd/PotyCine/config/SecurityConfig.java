@@ -25,7 +25,10 @@ public class SecurityConfig {
 
     public static final String [] ENDPOINT_WITH_AUTHENTICATION_NOT_REQUIRED = {
             "/users/login",
-            "/users"
+            "/users",
+            "/swagger-ui.html",
+            "/swagger-ui/**",
+            "/v3/api-docs/**"
     };
 
     public static final String [] ENDPOINTS_WITH_AUTHENTICATION_REQUIRED = {
