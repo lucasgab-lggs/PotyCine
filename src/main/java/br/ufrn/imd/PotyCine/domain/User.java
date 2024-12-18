@@ -1,6 +1,7 @@
 package br.ufrn.imd.PotyCine.domain;
 
 import br.ufrn.imd.PotyCine.enums.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +21,8 @@ public class User {
 
     @Column(unique = true)
     private String email;
+
+    @JsonIgnore
     private String password;
 
     @Enumerated(EnumType.STRING)
