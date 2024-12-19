@@ -1,10 +1,20 @@
 package br.ufrn.imd.PotyCine.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table (name="Favorites")
 public class Favorite {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
-    private Long eventId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+    @OneToOne
+    @JoinColumn(name = "event_id", nullable = false, unique = true)
+    private Event event;
 
     public Long getId() {
         return id;
@@ -14,19 +24,19 @@ public class Favorite {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Long getEventId() {
-        return eventId;
+    public Event getEvent() {
+        return event;
     }
 
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
+    public void setEvent(Event event) {
+        this.event = event;
     }
 }

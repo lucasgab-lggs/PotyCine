@@ -1,11 +1,23 @@
 package br.ufrn.imd.PotyCine.domain;
 
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="tickets")
 public class Ticket {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
-    private Long eventId;
-
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "event_id", nullable = false)
+    private Event event;
+    @Column
+    private float price;
     public Long getId() {
         return id;
     }
@@ -14,19 +26,22 @@ public class Ticket {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Long getEventId() {
-        return eventId;
+    public Event getEvent() {
+        return event;
     }
 
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
+    public void setEventId(Event event) {
+        this.event = event;
     }
+
+    public float getPrice() { return price; }
+    public void setPrice(float price) { this.price = price; }
 }

@@ -1,12 +1,24 @@
 package br.ufrn.imd.PotyCine.domain;
 
+
+import jakarta.persistence.*;
+
+@Entity
+@Table (name="movies")
 public class Movie {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private String title;
+    @Column
     private String description;
+    @Column
     private Integer duration;
+    @Column
     private String director;
+    @Column
     private String script;
 
     public Long getId() {

@@ -1,16 +1,29 @@
 package br.ufrn.imd.PotyCine.domain;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
+@Table (name="event")
 public class Event {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private String name;
+    @Column
     private String description;
+    @Column
     private String address;
+    @Column
     private Date startDate;
+    @Column
     private Date endDate;
-    private Long producerId;
+    @ManyToOne
+    @JoinColumn(name = "producer_id", nullable = false, unique = true)
+    private Producer producer;
 
     public Long getId() {
         return id;
@@ -60,11 +73,11 @@ public class Event {
         this.endDate = endDate;
     }
 
-    public Long getProducerId() {
-        return producerId;
+    public Producer getProducer() {
+        return producer;
     }
 
-    public void setProducerId(Long producerId) {
-        this.producerId = producerId;
+    public void setProducer(Producer producer) {
+        this.producer = producer;
     }
 }
