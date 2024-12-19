@@ -27,6 +27,8 @@ public class SecurityConfig {
             "/users/login",
             "/users",
             "/producers",
+            "/events/until-today",
+            "/events/producer/**",
             "/swagger-ui.html",
             "/swagger-ui/**",
             "/v3/api-docs/**"
@@ -42,7 +44,8 @@ public class SecurityConfig {
     };
 
     public static final String [] ENDPOINTS_PRODUCER = {
-            "/users/test/producer"
+            "/users/test/producer",
+            "/events"
     };
 
     public static final String [] ENDPOINTS_USER = {

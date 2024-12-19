@@ -22,7 +22,7 @@ public class Event {
     @Column
     private Date endDate;
     @ManyToOne
-    @JoinColumn(name = "producer_id", nullable = false, unique = true)
+    @JoinColumn(name = "producer_id", nullable = false)
     private Producer producer;
 
     public Long getId() {
