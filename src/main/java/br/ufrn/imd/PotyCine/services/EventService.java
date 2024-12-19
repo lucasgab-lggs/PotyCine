@@ -46,4 +46,9 @@ public class EventService {
                 .orElseThrow(() -> new RuntimeException("Produtor não encontrado"));
         return eventRepository.findByProducer(producer);
     }
+
+    public Event getEventById(Long eventId) {
+        return eventRepository.findById(eventId)
+                .orElseThrow(() -> new RuntimeException("Evento não encontrado"));
+    }
 }

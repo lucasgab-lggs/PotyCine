@@ -29,6 +29,7 @@ public class SecurityConfig {
             "/producers",
             "/events/until-today",
             "/events/producer/**",
+            "/events/{eventId}",
             "/swagger-ui.html",
             "/swagger-ui/**",
             "/v3/api-docs/**"

@@ -35,4 +35,11 @@ public class EventController {
         List<Event> events = eventService.getEventsByProducer(producerId);
         return ResponseEntity.ok(events);
     }
+
+    @GetMapping("/{eventId}")
+    public ResponseEntity<Event> getEventById(@PathVariable Long eventId) {
+        Event event = eventService.getEventById(eventId);
+        return ResponseEntity.ok(event);
+    }
+
 }
