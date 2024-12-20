@@ -2,6 +2,7 @@ package br.ufrn.imd.PotyCine.domain;
 
 import br.ufrn.imd.PotyCine.enums.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(description = "Representa um usuário no sistema")
 public class User {
 
     @Id

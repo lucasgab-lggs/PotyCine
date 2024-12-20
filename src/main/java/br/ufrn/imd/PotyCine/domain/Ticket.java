@@ -38,7 +38,7 @@ public class Ticket {
         return event;
     }
 
-    public void setEventId(Event event) {
+    public void setEvent(Event event) {
         this.event = event;
     }
 

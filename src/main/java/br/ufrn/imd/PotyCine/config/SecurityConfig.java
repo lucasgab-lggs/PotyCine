@@ -38,6 +38,7 @@ public class SecurityConfig {
 
     public static final String [] ENDPOINTS_WITH_AUTHENTICATION_REQUIRED = {
             "/producers/**",
+            "/tickets",
             "/users/**"
     };
 

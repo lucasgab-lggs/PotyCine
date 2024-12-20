@@ -6,6 +6,8 @@ import br.ufrn.imd.PotyCine.dto.LoginUserDto;
 import br.ufrn.imd.PotyCine.dto.RecoveryJwtTokenDto;
 import br.ufrn.imd.PotyCine.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
@@ -23,7 +25,9 @@ public class UserController {
     }
 
     @Operation(summary = "Loga o usuário")
-    @ApiResponse(responseCode = "200", description = "Loga usuário")
+    @ApiResponse(responseCode = "200", description = "Loga usuário",
+            content = @Content(mediaType = "application/json",
+            schema = @Schema(implementation = User.class)))
     @PostMapping("/login")
     public ResponseEntity<RecoveryJwtTokenDto> authenticateUser(@RequestBody LoginUserDto loginUserDto){
         RecoveryJwtTokenDto token = userService.authenticateUser(loginUserDto);
