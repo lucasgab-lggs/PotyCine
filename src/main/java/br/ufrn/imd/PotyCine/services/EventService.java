@@ -1,8 +1,12 @@
 package br.ufrn.imd.PotyCine.services;
 
 import br.ufrn.imd.PotyCine.domain.Event;
+import br.ufrn.imd.PotyCine.domain.Exhibit;
+import br.ufrn.imd.PotyCine.domain.Movie;
 import br.ufrn.imd.PotyCine.domain.Producer;
+import br.ufrn.imd.PotyCine.dto.CreateExhibitDto;
 import br.ufrn.imd.PotyCine.dto.EventDto;
+import br.ufrn.imd.PotyCine.dto.ProducerDto;
 import br.ufrn.imd.PotyCine.repositories.EventRepository;
 import br.ufrn.imd.PotyCine.repositories.ProducerRepository;
 import org.springframework.stereotype.Service;
@@ -15,10 +19,12 @@ import java.util.List;
 public class EventService {
     private final EventRepository eventRepository;
     private final ProducerRepository producerRepository;
+    private final ProducerService producerService;
 
-    public EventService(EventRepository eventRepository, ProducerRepository producerRepository) {
+    public EventService(EventRepository eventRepository, ProducerRepository producerRepository, ProducerService producerService) {
         this.eventRepository = eventRepository;
         this.producerRepository = producerRepository;
+        this.producerService = producerService;
     }
 
     public Event createEvent(EventDto eventDto) {
@@ -51,4 +57,31 @@ public class EventService {
         return eventRepository.findById(eventId)
                 .orElseThrow(() -> new RuntimeException("Evento não encontrado"));
     }
+    public void deleteEventById(Long eventId) {
+        if (!eventRepository.existsById(eventId)) {
+            throw new RuntimeException("Exibição não encontrada");
+        }
+        eventRepository.deleteById(eventId);
+    }
+    public Event updateEvent(Long id, EventDto eventDto) {
+        Event event = getEventById(id);
+
+        if (eventDto.name() != null) event.setName(eventDto.name());
+        if (eventDto.description() != null) event.setDescription(eventDto.description());
+        if (eventDto.address() != null) event.setAddress(eventDto.address());
+        if (eventDto.startDate() != null) event.setStartDate(Timestamp.valueOf(eventDto.startDate()));
+        if (eventDto.endDate() != null) event.setEndDate(Timestamp.valueOf(eventDto.endDate()));
+        if(eventDto.producerId() != null){
+            Producer producer = producerService.findProducerById(eventDto.producerId());
+            event.setProducer(producer);
+        }
+
+        return eventRepository.save(event);
+    }
+//    String name,
+//    String description,
+//    String address,
+//    LocalDateTime startDate,
+//    LocalDateTime endDate,
+//    Long producerId
 }

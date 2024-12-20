@@ -1,7 +1,12 @@
 package br.ufrn.imd.PotyCine.controllers;
 
+import br.ufrn.imd.PotyCine.domain.Event;
 import br.ufrn.imd.PotyCine.domain.Exhibit;
+import br.ufrn.imd.PotyCine.domain.Producer;
+import br.ufrn.imd.PotyCine.domain.User;
 import br.ufrn.imd.PotyCine.dto.CreateExhibitDto;
+import br.ufrn.imd.PotyCine.dto.EventDto;
+import br.ufrn.imd.PotyCine.dto.ProducerDto;
 import br.ufrn.imd.PotyCine.services.ExhibitService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,5 +33,22 @@ public class ExhibitController {
     public ResponseEntity<List<Exhibit>> getExhibitsByEventId(@PathVariable Long eventId) {
         List<Exhibit> exhibits = exhibitService.getExhibitsByEventId(eventId);
         return ResponseEntity.status(HttpStatus.OK).body(exhibits);
+    }
+
+    @GetMapping("/{exhibitId}")
+    public ResponseEntity<Exhibit> getExhibitById(@PathVariable Long exhibitId) {
+        Exhibit exhibit = exhibitService.getExhibitById(exhibitId);
+        return ResponseEntity.ok(exhibit);
+    }
+    @PutMapping("/{exhibitId}")
+    public ResponseEntity<Exhibit> updateExhibit(@PathVariable Long id, @RequestBody CreateExhibitDto exhibitDto) {
+        Exhibit exhibit = exhibitService.updateExhibit(id, exhibitDto);
+        return ResponseEntity.status(HttpStatus.OK).body(exhibit);
+    }
+    @DeleteMapping("/{exhibitId}")
+    public ResponseEntity<Exhibit> deleteExhibitById(@PathVariable Long exhibitId) {
+        Exhibit exhibit = exhibitService.getExhibitById(exhibitId);
+        exhibitService.deleteExhibitById(exhibitId);
+        return ResponseEntity.ok(exhibit);
     }
 }

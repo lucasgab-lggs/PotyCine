@@ -2,8 +2,14 @@ package br.ufrn.imd.PotyCine.domain;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table (name="movies")
 public class Movie {
 
