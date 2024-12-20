@@ -1,5 +1,6 @@
 package br.ufrn.imd.PotyCine.controllers;
 
+import br.ufrn.imd.PotyCine.domain.Ticket;
 import br.ufrn.imd.PotyCine.domain.User;
 import br.ufrn.imd.PotyCine.dto.CreateUserDto;
 import br.ufrn.imd.PotyCine.dto.LoginUserDto;
@@ -13,6 +14,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -46,5 +49,11 @@ public class UserController {
     public ResponseEntity<User> getUserById(@PathVariable Long id){
         User user = userService.findUserById(id);
         return ResponseEntity.status(HttpStatus.OK).body(user);
+    }
+
+    @GetMapping("/{id}/tickets")
+    public ResponseEntity<List<Ticket>> getUserTickets(@PathVariable Long id){
+        List<Ticket> tickets = userService.getUserTickets(id);
+        return ResponseEntity.status(HttpStatus.OK).body(tickets);
     }
 }

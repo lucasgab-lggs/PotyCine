@@ -61,6 +61,48 @@ Response:
     "role": "USER"
 }
 ```
+#### Tickets do usuário
+`GET /users/{id}/tickets`
+
+Permissão: Logado
+
+Response:
+```
+[
+    {
+        "id": 1,
+        "user": {
+            "id": 1,
+            "name": "Admin",
+            "email": "admin@mail.com",
+            "role": "ADMINISTRATOR"
+        },
+        "event": {
+            "id": 1,
+            "name": "Festival de Cinema Independente",
+            "description": "Mostra de curtas e longas metragens independentes.",
+            "address": "Av. da Cultura, 45",
+            "startDate": "2024-12-10T21:00:00.000+00:00",
+            "endDate": "2024-12-16T01:00:00.000+00:00",
+            "producer": {
+                "id": 1,
+                "user": {
+                    "id": 2,
+                    "name": "Produtor",
+                    "email": "produtor@mail.com",
+                    "role": "PRODUCER"
+                },
+                "companyName": "Film Company",
+                "portfolio": {
+                    "Youtube": "www.youtube.com",
+                    "Instagram": "www.instagram.com"
+                }
+            }
+        },
+        "price": 20.0
+    }
+]
+```
 ### Produtor (`/producers`)
 #### Adicionar dados do produtor
 `POST /producers`
@@ -396,5 +438,3 @@ Request:
     "price": 20
 }
 ```
-* `userId`: Id do usuário que está realizando a compra.
-* `eventId`: Id do evento para o qual está se realizando a compra.

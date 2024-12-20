@@ -1,16 +1,19 @@
 package br.ufrn.imd.PotyCine.services;
 
 import br.ufrn.imd.PotyCine.config.SecurityConfig;
+import br.ufrn.imd.PotyCine.domain.Ticket;
 import br.ufrn.imd.PotyCine.domain.User;
 import br.ufrn.imd.PotyCine.dto.CreateUserDto;
 import br.ufrn.imd.PotyCine.dto.LoginUserDto;
 import br.ufrn.imd.PotyCine.dto.RecoveryJwtTokenDto;
+import br.ufrn.imd.PotyCine.repositories.TicketRepository;
 import br.ufrn.imd.PotyCine.repositories.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -20,12 +23,16 @@ public class UserService {
     private final JwtTokenService jwtTokenService;
     private final UserRepository userRepository;
     private final SecurityConfig securityConfig;
+    private final TicketRepository ticketRepository;
 
-    public UserService(AuthenticationManager authenticationManager, JwtTokenService jwtTokenService, UserRepository userRepository, SecurityConfig securityConfig) {
+    public UserService(AuthenticationManager authenticationManager, JwtTokenService jwtTokenService,
+                       UserRepository userRepository, SecurityConfig securityConfig,
+                       TicketRepository ticketRepository) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenService = jwtTokenService;
         this.userRepository = userRepository;
         this.securityConfig = securityConfig;
+        this.ticketRepository = ticketRepository;
     }
 
     public RecoveryJwtTokenDto authenticateUser(LoginUserDto loginUserDto){
@@ -53,5 +60,10 @@ public class UserService {
     public User findUserById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+    }
+
+    public List<Ticket> getUserTickets(Long userId) {
+        User user = findUserById(userId);
+        return ticketRepository.findByUser(user);
     }
 }
