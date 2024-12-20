@@ -24,7 +24,7 @@ public class TicketService {
     }
 
     public Ticket createTicket(TicketDto ticketDto) {
-        User user = userRepository.findById(ticketDto.eventId())
+        User user = userRepository.findById(ticketDto.userId())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
         Event event = eventRepository.findById(ticketDto.eventId())
