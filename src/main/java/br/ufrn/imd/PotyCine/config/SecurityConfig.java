@@ -49,7 +49,8 @@ public class SecurityConfig {
     public static final String [] ENDPOINTS_PRODUCER = {
             "/users/test/producer",
             "/events",
-            "/exhibits"
+            "/exhibits",
+            "/exhibits/*"
     };
 
     public static final String [] ENDPOINTS_USER = {

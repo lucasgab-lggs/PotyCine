@@ -38,7 +38,7 @@ public class ExhibitController {
     @GetMapping("/{exhibitId}")
     public ResponseEntity<Exhibit> getExhibitById(@PathVariable Long exhibitId) {
         Exhibit exhibit = exhibitService.getExhibitById(exhibitId);
-        return ResponseEntity.ok(exhibit);
+        return ResponseEntity.status(HttpStatus.OK).body(exhibit);
     }
     @PutMapping("/{exhibitId}")
     public ResponseEntity<Exhibit> updateExhibit(@PathVariable Long id, @RequestBody CreateExhibitDto exhibitDto) {
