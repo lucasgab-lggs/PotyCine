@@ -380,3 +380,21 @@ Response:
     }
 ]
 ```
+
+### Tickets (`/tickets`)
+#### Registra um ticket comprado pelo usuário.
+`POST /tickets`
+
+Permissão: Logado
+
+Request: 
+
+```
+{
+    "userId": 1,
+    "eventId": 1,
+    "price": 20
+}
+```
+* `userId`: Id do usuário que está realizando a compra.
+* `eventId`: Id do evento para o qual está se realizando a compra.
