@@ -30,6 +30,7 @@ public class SecurityConfig {
             "/events/until-today",
             "/events/producer/**",
             "/events/{eventId}",
+            "/exhibits/event/{eventId}",
             "/swagger-ui.html",
             "/swagger-ui/**",
             "/v3/api-docs/**"
@@ -46,7 +47,8 @@ public class SecurityConfig {
 
     public static final String [] ENDPOINTS_PRODUCER = {
             "/users/test/producer",
-            "/events"
+            "/events",
+            "/exhibits"
     };
 
     public static final String [] ENDPOINTS_USER = {
