@@ -34,7 +34,6 @@ public class ExhibitService {
                 .orElseThrow(() -> new RuntimeException("Evento não encontrado"));
 
         Movie movie = buildMovie(createExhibitDto);
-        movie = movieRepository.save(movie);
 
         Exhibit exhibit = new Exhibit();
         exhibit.setMovie(movie);
@@ -81,6 +80,7 @@ public class ExhibitService {
         movie.setDuration(dto.movieDuration());
         movie.setDirector(dto.movieDirector());
         movie.setScript(dto.movieScript());
+        movie = movieRepository.save(movie);
         return movie;
     }
 

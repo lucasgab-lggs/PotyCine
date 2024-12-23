@@ -41,8 +41,8 @@ public class ExhibitController {
         return ResponseEntity.status(HttpStatus.OK).body(exhibit);
     }
     @PutMapping("/{exhibitId}")
-    public ResponseEntity<Exhibit> updateExhibit(@PathVariable Long id, @RequestBody CreateExhibitDto exhibitDto) {
-        Exhibit exhibit = exhibitService.updateExhibit(id, exhibitDto);
+    public ResponseEntity<Exhibit> updateExhibit(@PathVariable Long exhibitId, @RequestBody CreateExhibitDto exhibitDto) {
+        Exhibit exhibit = exhibitService.updateExhibit(exhibitId, exhibitDto);
         return ResponseEntity.status(HttpStatus.OK).body(exhibit);
     }
     @DeleteMapping("/{exhibitId}")
