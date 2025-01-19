@@ -9,4 +9,6 @@ import java.util.List;
 public interface ExhibitRepository extends CrudRepository<Exhibit, Long> {
     List<Exhibit> findByEvent(Event event);
 
+    void deleteByEvent(Event event);
+
 }

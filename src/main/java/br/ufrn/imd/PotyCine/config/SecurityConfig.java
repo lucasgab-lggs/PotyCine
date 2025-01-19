@@ -50,7 +50,8 @@ public class SecurityConfig {
             "/users/test/producer",
             "/events",
             "/exhibits",
-            "/exhibits/**"
+            "/exhibits/**",
+            "/events/{eventId}",
     };
 
     public static final String [] ENDPOINTS_USER = {

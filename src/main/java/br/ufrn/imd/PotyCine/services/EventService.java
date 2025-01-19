@@ -8,7 +8,9 @@ import br.ufrn.imd.PotyCine.dto.CreateExhibitDto;
 import br.ufrn.imd.PotyCine.dto.EventDto;
 import br.ufrn.imd.PotyCine.dto.ProducerDto;
 import br.ufrn.imd.PotyCine.repositories.EventRepository;
+import br.ufrn.imd.PotyCine.repositories.ExhibitRepository;
 import br.ufrn.imd.PotyCine.repositories.ProducerRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -19,11 +21,13 @@ import java.util.List;
 public class EventService {
     private final EventRepository eventRepository;
     private final ProducerRepository producerRepository;
+    private final ExhibitRepository exhibitRepository;
     private final ProducerService producerService;
 
-    public EventService(EventRepository eventRepository, ProducerRepository producerRepository, ProducerService producerService) {
+    public EventService(EventRepository eventRepository, ProducerRepository producerRepository, ExhibitRepository exhibitRepository, ProducerService producerService) {
         this.eventRepository = eventRepository;
         this.producerRepository = producerRepository;
+        this.exhibitRepository = exhibitRepository;
         this.producerService = producerService;
     }
 
@@ -57,11 +61,15 @@ public class EventService {
         return eventRepository.findById(eventId)
                 .orElseThrow(() -> new RuntimeException("Evento não encontrado"));
     }
+
+    @Transactional
     public void deleteEventById(Long eventId) {
-        if (!eventRepository.existsById(eventId)) {
-            throw new RuntimeException("Exibição não encontrada");
-        }
-        eventRepository.deleteById(eventId);
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new RuntimeException("Evento não encontrado"));
+
+
+        exhibitRepository.deleteByEvent(event);
+        eventRepository.delete(event);
     }
     public Event updateEvent(Long id, EventDto eventDto) {
         Event event = getEventById(id);

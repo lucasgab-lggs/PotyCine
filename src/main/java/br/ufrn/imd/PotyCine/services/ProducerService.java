@@ -40,8 +40,14 @@ public class ProducerService {
     }
 
     public Producer findProducerById(Long id) {
-        return producerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Produtor não encontrado"));
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        try{
+            return producerRepository.findByUser(user);
+        } catch (Exception e) {
+            throw new RuntimeException("Usuário não possui produtor registrado");
+        }
+
     }
 
     public Producer updateProducer(Long id, ProducerDto producerDto) {

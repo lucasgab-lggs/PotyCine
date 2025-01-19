@@ -1,8 +1,6 @@
 package br.ufrn.imd.PotyCine.controllers;
 
 import br.ufrn.imd.PotyCine.domain.Event;
-import br.ufrn.imd.PotyCine.domain.Exhibit;
-import br.ufrn.imd.PotyCine.dto.CreateExhibitDto;
 import br.ufrn.imd.PotyCine.dto.EventDto;
 import br.ufrn.imd.PotyCine.services.EventService;
 import org.springframework.http.HttpStatus;
@@ -44,15 +42,15 @@ public class EventController {
         return ResponseEntity.ok(event);
     }
     @PutMapping("/{eventId}")
-    public ResponseEntity<Event> updateEvent(@PathVariable Long id, @RequestBody EventDto eventDto) {
-        Event event = eventService.updateEvent(id, eventDto);
+    public ResponseEntity<Event> updateEvent(@PathVariable Long eventId, @RequestBody EventDto eventDto) {
+        Event event = eventService.updateEvent(eventId, eventDto);
         return ResponseEntity.status(HttpStatus.OK).body(event);
     }
     @DeleteMapping("/{eventId}")
-    public ResponseEntity<Event> deleteEventById(@PathVariable Long eventId) {
+    public ResponseEntity<String> deleteEventById(@PathVariable Long eventId) {
         Event event = eventService.getEventById(eventId);
         eventService.deleteEventById(eventId);
-        return ResponseEntity.ok(event);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Evento removido");
     }
 
 }
