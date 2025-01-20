@@ -1,5 +1,6 @@
 package br.ufrn.imd.PotyCine.controllers;
 
+import br.ufrn.imd.PotyCine.domain.Favorite;
 import br.ufrn.imd.PotyCine.domain.Ticket;
 import br.ufrn.imd.PotyCine.domain.User;
 import br.ufrn.imd.PotyCine.dto.CreateUserDto;
@@ -55,5 +56,11 @@ public class UserController {
     public ResponseEntity<List<Ticket>> getUserTickets(@PathVariable Long id){
         List<Ticket> tickets = userService.getUserTickets(id);
         return ResponseEntity.status(HttpStatus.OK).body(tickets);
+    }
+
+    @GetMapping("/{id}/favorites")
+    public ResponseEntity<List<Favorite>> getUserFavorites(@PathVariable Long id){
+        List<Favorite> favorites = userService.getUserFavorites(id);
+        return ResponseEntity.status(HttpStatus.OK).body(favorites);
     }
 }

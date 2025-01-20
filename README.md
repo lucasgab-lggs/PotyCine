@@ -103,6 +103,47 @@ Response:
     }
 ]
 ```
+
+#### Favoritos do usuário
+`GET /users/{id}/favorites`
+
+Permissão: Logado
+
+Response:
+```
+[
+    {
+        "id": 1,
+        "user": {
+            "id": 3,
+            "name": "Fulano da Silva",
+            "email": "fulano3@mail.com",
+            "role": "USER"
+        },
+        "event": {
+            "id": 1,
+            "name": "Festival de Cinema Independente",
+            "description": "Mostra de curtas e longas metragens independentes.",
+            "address": "Av. da Cultura, 45",
+            "startDate": "2024-12-10T21:00:00.000+00:00",
+            "endDate": "2024-12-16T01:00:00.000+00:00",
+            "producer": {
+                "id": 1,
+                "user": {
+                    "id": 2,
+                    "name": "Fulano da Silva",
+                    "email": "fulano2@mail.com",
+                    "role": "PRODUCER"
+                },
+                "companyName": "Fox Films",
+                "portfolio": {
+                    "Youtube": "www.youtube.com"
+                }
+            }
+        }
+    }
+]
+```
 ### Produtor (`/producers`)
 #### Adicionar dados do produtor
 `POST /producers`
@@ -436,5 +477,60 @@ Request:
     "userId": 1,
     "eventId": 1,
     "price": 20
+}
+```
+
+### Favoritos (`/favorites`)
+#### Adiciona um evento como favorito pelo usuário.
+`POST /favorites`
+
+Permissão: Logado
+
+Request:
+
+```
+{
+    "userId": 1,
+    "eventId": 1,
+}
+```
+
+#### Remove um evento que o usuário favoritou anteriormente.
+`DELETE /favorites/{idEvento}`
+
+Permissão: Logado
+
+Response:
+
+```
+{
+    "id": 1,
+    "user": {
+        "id": 3,
+        "name": "Fulano da Silva",
+        "email": "fulano3@mail.com",
+        "role": "USER"
+    },
+    "event": {
+        "id": 1,
+        "name": "Festival de Cinema Independente",
+        "description": "Mostra de curtas e longas metragens independentes.",
+        "address": "Av. da Cultura, 45",
+        "startDate": "2024-12-10T21:00:00.000+00:00",
+        "endDate": "2024-12-16T01:00:00.000+00:00",
+        "producer": {
+            "id": 1,
+            "user": {
+                "id": 2,
+                "name": "Fulano da Silva",
+                "email": "fulano2@mail.com",
+                "role": "PRODUCER"
+            },
+            "companyName": "Fox Films",
+            "portfolio": {
+                "Youtube": "www.youtube.com"
+            }
+        }
+    }
 }
 ```

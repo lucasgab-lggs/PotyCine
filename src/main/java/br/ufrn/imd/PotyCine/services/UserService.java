@@ -1,11 +1,13 @@
 package br.ufrn.imd.PotyCine.services;
 
 import br.ufrn.imd.PotyCine.config.SecurityConfig;
+import br.ufrn.imd.PotyCine.domain.Favorite;
 import br.ufrn.imd.PotyCine.domain.Ticket;
 import br.ufrn.imd.PotyCine.domain.User;
 import br.ufrn.imd.PotyCine.dto.CreateUserDto;
 import br.ufrn.imd.PotyCine.dto.LoginUserDto;
 import br.ufrn.imd.PotyCine.dto.RecoveryJwtTokenDto;
+import br.ufrn.imd.PotyCine.repositories.FavoriteRepository;
 import br.ufrn.imd.PotyCine.repositories.TicketRepository;
 import br.ufrn.imd.PotyCine.repositories.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,15 +26,17 @@ public class UserService {
     private final UserRepository userRepository;
     private final SecurityConfig securityConfig;
     private final TicketRepository ticketRepository;
+    private final FavoriteRepository favoriteRepository;
 
     public UserService(AuthenticationManager authenticationManager, JwtTokenService jwtTokenService,
                        UserRepository userRepository, SecurityConfig securityConfig,
-                       TicketRepository ticketRepository) {
+                       TicketRepository ticketRepository, FavoriteRepository favoriteRepository) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenService = jwtTokenService;
         this.userRepository = userRepository;
         this.securityConfig = securityConfig;
         this.ticketRepository = ticketRepository;
+        this.favoriteRepository = favoriteRepository;
     }
 
     public RecoveryJwtTokenDto authenticateUser(LoginUserDto loginUserDto){
@@ -65,5 +69,10 @@ public class UserService {
     public List<Ticket> getUserTickets(Long userId) {
         User user = findUserById(userId);
         return ticketRepository.findByUser(user);
+    }
+
+    public List<Favorite> getUserFavorites(Long userId) {
+        User user = findUserById(userId);
+        return favoriteRepository.findByUser(user);
     }
 }
