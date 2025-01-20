@@ -51,7 +51,8 @@ public class SecurityConfig {
             "/users/test/producer",
             "/events",
             "/exhibits",
-            "/exhibits/**"
+            "/exhibits/**",
+            "/events/{eventId}",
     };
 
     public static final String [] ENDPOINTS_USER = {
@@ -60,7 +61,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity.csrf().disable()
+        return httpSecurity.cors().and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests()
                 .requestMatchers(ENDPOINT_WITH_AUTHENTICATION_NOT_REQUIRED).permitAll()

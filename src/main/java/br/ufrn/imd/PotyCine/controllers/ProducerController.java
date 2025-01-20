@@ -34,4 +34,5 @@ public class ProducerController {
         Producer producer = producerService.updateProducer(id, producerDto);
         return ResponseEntity.status(HttpStatus.OK).body(producer);
     }
+
 }
