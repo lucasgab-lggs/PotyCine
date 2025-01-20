@@ -29,15 +29,18 @@ Plataforma digital que conecta produtores e cinéfilos, promovendo eventos de ci
 git clone URL_REPO
 cd PotyCine
 ```
+
 **2. Configurar acesso ao banco de dados**
 - A configuração do acesso ao banco de dados 
 localiza-se no arquivo "application.properties". 
 Nesse arquivo deve-se configurar o banco de 
 dados utilizado, o usuário e a senha.
+
 **3. Compilar o projeto**
 ```
 mvn compile
 ```
+
 **5. Gerar o pacote**
 - O arquivo será gerado no diretório "target/"
 ```
