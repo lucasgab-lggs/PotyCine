@@ -11,7 +11,47 @@ Plataforma digital que conecta produtores e cinéfilos, promovendo eventos de ci
 ## Ferramentas
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+## Build
+### Pré-requisitos
+**1. Java Development Kit (JDK)**
+- Versão mínima: 23
 
+**2. Maven**
+- Versão: 3.9+
+
+**3. Git**
+
+**4. IDE (opcional)**
+- Recomenda-se IntelliJ Idea que possui suporte para Spring.
+### Etapas para Build
+**1. Clone o repositório**
+```
+git clone URL_REPO
+cd PotyCine
+```
+**2. Configurar acesso ao banco de dados**
+- A configuração do acesso ao banco de dados 
+localiza-se no arquivo "application.properties". 
+Nesse arquivo deve-se configurar o banco de 
+dados utilizado, o usuário e a senha.
+**3. Compilar o projeto**
+```
+mvn compile
+```
+**5. Gerar o pacote**
+- O arquivo será gerado no diretório "target/"
+```
+mvn package
+```
+### Executando o projeto
+**1. Executar diretamente o JAR**
+```
+cd target
+java -jar nome_do_arquivo.jar
+```
+**2. Executar via IDE**
+- Abrir o projeto na IDE.
+- Localizar a classe principal (PotyCineApplication) e executá-la.
 ## Permissões
 * Admin `ADMINISTRATOR`
 * Produtor `PRODUCER` -> Gerencia eventos
