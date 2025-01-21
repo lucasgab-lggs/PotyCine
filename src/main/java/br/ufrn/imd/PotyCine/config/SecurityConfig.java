@@ -27,6 +27,7 @@ public class SecurityConfig {
             "/users/login",
             "/users",
             "/producers",
+            "/events/all",
             "/events/until-today",
             "/events/producer/**",
             "/events/{eventId}",

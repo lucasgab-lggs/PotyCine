@@ -258,6 +258,58 @@ Request:
     "producerId": 1
 }
 ```
+### Obtém todos os eventos independente de suas datas.
+`GET /events/all`
+
+Permissão: Logado
+
+Response:
+```
+[
+    {
+        "id": 1,
+        "name": "Festival de Cinema Independente",
+        "description": "Mostra de curtas e longas metragens independentes.",
+        "address": "Av. da Cultura, 45",
+        "startDate": "2024-12-25T21:00:00.000+00:00",
+        "endDate": "2024-12-26T01:00:00.000+00:00",
+        "producer": {
+            "id": 1,
+            "user": {
+                "id": 5,
+                "name": "Producer",
+                "email": "producer@mail.com",
+                "role": "PRODUCER"
+            },
+            "companyName": "Fox Films",
+            "portfolio": {
+                "Youtube": "www.youtube.com"
+            }
+        }
+    },
+    {
+        "id": 2,
+        "name": "Festival de Cinema Independente 2",
+        "description": "Mostra de curtas e longas metragens independentes.",
+        "address": "Av. da Cultura, 45",
+        "startDate": "2024-12-25T21:00:00.000+00:00",
+        "endDate": "2024-12-26T01:00:00.000+00:00",
+        "producer": {
+            "id": 1,
+            "user": {
+                "id": 5,
+                "name": "Producer",
+                "email": "producer@mail.com",
+                "role": "PRODUCER"
+            },
+            "companyName": "Fox Films",
+            "portfolio": {
+                "Youtube": "www.youtube.com"
+            }
+        }
+    }
+]
+```
 #### Eventos que ainda estão ativos (data final não atingida)
 `GET /events/until-today`
 

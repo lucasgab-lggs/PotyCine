@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface EventRepository extends CrudRepository<Event, Long> {
     List<Event> findByEndDateAfter(LocalDateTime today);
-
+    List<Event> findAllByStartDateIsNotNull();
     List<Event> findByProducer(Producer producer);
 }

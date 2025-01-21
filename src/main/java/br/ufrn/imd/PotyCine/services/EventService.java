@@ -46,6 +46,10 @@ public class EventService {
         return eventRepository.save(event);
     }
 
+    public List<Event> getAllEvents() {
+        return eventRepository.findAllByStartDateIsNotNull();
+    }
+
     public List<Event> getEventsUntilToday() {
         LocalDateTime today = LocalDateTime.now();
         return eventRepository.findByEndDateAfter(today);

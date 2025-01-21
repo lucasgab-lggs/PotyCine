@@ -24,6 +24,12 @@ public class EventController {
         return ResponseEntity.status(HttpStatus.CREATED).body(event);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<Event>> getAllEvents(){
+        List<Event> events = eventService.getAllEvents();
+        return ResponseEntity.ok(events);
+    }
+
     @GetMapping("/until-today")
     public ResponseEntity<List<Event>> getEventsUntilToday() {
         List<Event> events = eventService.getEventsUntilToday();
